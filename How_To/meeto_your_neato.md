@@ -97,7 +97,7 @@ Checklist before performing this step:
 >> [sensors,vels]=neato('192.168.16.68');
 ```
 
-You can verify this worked because the robot will start making a quiet whirring sound and the laser (visible from the side) will start rotating. You should also see a new figure pop up with some LIDAR data (e.g., the walls) on the robot's odemetry coordinates, which are polar (circular) coordinates.
+You can verify this worked because the robot will start making a quiet whirring sound and the laser (visible from the side) will start rotating. You should also see a new figure pop up with some LIDAR data (e.g., the walls) on the robot's odemetry coordinates, which are polar (circular) coordinates (see the picture below for an example).
 
 ## Making the Neatos move
 
@@ -134,8 +134,24 @@ To stop the motion, you can either click on sensor measurement figure and hit "k
 
 ## Viewing the Neatos' sensor measurements
 
+The main figure that appears when you connect to the Neato shows the LIDAR data. Here is an example:
 
+<p align="center">
+<img src="Pictures/lidar_viz.png" alt="A screenshot of the LIDAR data visualization figure" width="60%" height="60%">
+</p>
 
+The front of the robot (with the flat side opposite the LIDAR) corresponds to 0 degrees.
+
+More generally, all of the sensor from the Neato is stored in a vector that we called "sensors" (the first argument on the left hand side of the call to 'neato' when we connected to the Neato).
+
+The data structure includes:
+- bumpers: 0/1 booleans about whether any of the four bumbers are engaged
+- thetasInRadians: the LIDAR takes measurements every 1 degree, or 2pi/360 radians, starting at 0. These angles are given in this vector
+- ranges: the distance of the first thing (e.g., wall, object) sensed by the LIDAR in the direction of the corresponding angle. For example, the first element of this vector tells the distance to an object directly ahead.
+
+We'll explore the other components soon.
+
+ 
 ## Disconnecting from the Neatos
 
 ### Step 1: Close the figure with the LIDAR data on polar coordinates
