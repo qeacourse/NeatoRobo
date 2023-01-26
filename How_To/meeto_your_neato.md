@@ -23,26 +23,40 @@ Since you are not modifying the code running on the Raspberry Pi, each robot wil
 
 ## One-Time Setup in MATLAB
 
+You should only have to do the following steps once at the beginning of the semester.
+
 ### Step 1: Make sure you have Matlab installed. 
 
 We used Matlab last semester, but just in case...
 
-### Step 2: Install MATLAB Drive
+### Step 2: Install MATLAB Drive Connector. You can find the download here:
 
-ADD DETAILS
+https://www.mathworks.com/products/matlab-drive.html?s_tid=AO_MLConnector#matlab-drive-connector
 
-### Step 3: Connect to Neato files on MATLAB Drive
+If prompted for a username and password, use your standard Olin credentials. When you install this program, there will be a local folder in your file system called "MATLAB-Drive." All the files in that folder get synced to the cloud on the MATLAB site, similar to how it is done for Dropbox or Google Drive.
 
-ADD DETAILS
+### Step 3: Add Neato files to your MATLAB Drive.
 
-### Step 4: Set Path 
+Click on the following link:
 
-ADD DETAILS
+https://drive.matlab.com/sharing/97375c34-1e81-461b-854a-28da2c573026/
 
-### Step 5: Save Path
+Then click "Add to my Files" and then "Add Shortcut." Use your Olin credentials for the requested username and password.
 
-ADD DETAILS
 
+### Step 4: Connect to Neato files on MATLAB Drive Connector
+
+Open MATLAB. Just under the New Live Script icon, you should see a small icon with a folder with a blue cloud in the bottom left corner (see pic below). Click on that.
+
+### Step 5: Set and save path. On the Home tab of MATLAB, to the right of the Layout button, there is a small icon with multiple folders for "Set Path." Click on that. Then click on "Add with subfolders..." and browse to and select the "MATLAB-Drive" from your files. Click on "Save" to make sure the path is saved. 
+
+### Step 6: Check that the Neato files are in your path. In the Command Window, type 
+
+```matlab
+>> which neato
+```
+
+If you get a location of a file on your laptop, you have set the path correctly. If you get a message saying "'neato' not found," repeat the previous step again. Next, quit MATLAB, reopen it, and then repeat this step to make sure you saved the path correctly.
 
 
 ## Connecting to the Physical Neatos 
@@ -83,12 +97,15 @@ Checklist before performing this step:
 
 You can verify this worked because the robot will start making a quiet whirring sound and the laser (visible from the side) will start rotating. You should also see a new figure pop up with a set of polar (circular) coordinates and some LIDAR data (e.g., the walls).
 
+## Making the Neatos move
+
+## Viewing the Neatos' sensor measurements
 
 ## Disconnecting from the Neatos
 
 ### Step 1: Close the figure with the LIDAR data on polar coordinates. This automatically disconnects from your robot. If you accidentally close this window, you'll have to go back to step 5 of connecting above.
 
-### Step 2: Shutting Down the Raspberry Pi
+### Step 2: Shut down the Raspberry Pi.
 
 When you are done working with the robot, it is important to properly shutdown the raspberry pi. DO NOT just unplug the battery. To shutdown the pi, push the "up" button once (or more) until you see the message "Press select to Shutdown". Press select and wait for the green "ACT" LED on the left side of the Pi to flash steadily ten times then stay off. It is then safe to unplug the battery.
 
