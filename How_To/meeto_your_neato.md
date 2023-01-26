@@ -25,17 +25,19 @@ Since you are not modifying the code running on the Raspberry Pi, each robot wil
 
 You should only have to do the following steps once at the beginning of the semester.
 
-### Step 1: Make sure you have Matlab installed. 
+### Step 1: Make sure you have Matlab installed
 
 We used Matlab last semester, but just in case...
 
-### Step 2: Install MATLAB Drive Connector. You can find the download here:
+### Step 2: Install MATLAB Drive Connector
+
+You can find the download here:
 
 [https://www.mathworks.com/products/matlab-drive.html?s_tid=AO_MLConnector#matlab-drive-connector](https://www.mathworks.com/products/matlab-drive.html?s_tid=AO_MLConnector#matlab-drive-connector)
 
 If prompted for a username and password, use your standard Olin credentials. When you install this program, there will be a local folder in your file system called "MATLAB-Drive." All the files in that folder get synced to the cloud on the MATLAB site, similar to how it is done for Dropbox or Google Drive.
 
-### Step 3: Add Neato files to your MATLAB Drive.
+### Step 3: Add Neato files to your MATLAB Drive
 
 Click on the following link:
 
@@ -44,13 +46,13 @@ Click on the following link:
 Then click "Add to my Files" and then "Add Shortcut." Use your Olin credentials for the requested username and password.
 
 
-### Step 4: Connect to Neato files on MATLAB Drive Connector
+### Step 4: Set and save path
 
-Open MATLAB. Just under the New Live Script icon, you should see a small icon with a folder with a blue cloud in the bottom left corner (see pic below). Click on that.
+Alternatively, on the Home tab of MATLAB, to the right of the Layout button, there is a small icon with multiple folders for "Set Path." Click on that. Then click on "Add with subfolders..." and browse to and select the "MATLAB-Drive" from your files. Click on "Save" to make sure the path is saved. 
 
-### Step 5: Set and save path. On the Home tab of MATLAB, to the right of the Layout button, there is a small icon with multiple folders for "Set Path." Click on that. Then click on "Add with subfolders..." and browse to and select the "MATLAB-Drive" from your files. Click on "Save" to make sure the path is saved. 
+### Step 5: Check that the Neato files are in your path
 
-### Step 6: Check that the Neato files are in your path. In the Command Window, type 
+In the Command Window, type 
 
 ```matlab
 >> which neato
@@ -101,7 +103,7 @@ You can verify this worked because the robot will start making a quiet whirring 
 
 There are two ways to drive the Neato around:
 
-1. Use the keyboard shortcuts. ***In order for these shortcuts to work, you have to actively be on the figure with the LIDAR measurements (i.e., click on this figure before trying to drive with the keyboard).*** The key mappings are:
+- Use the keyboard shortcuts. ***In order for these shortcuts to work, you have to actively be on the figure with the LIDAR measurements (i.e., click on this figure before trying to drive with the keyboard).*** The key mappings are:
    - i : forward
    - k : stop
    - j : left
@@ -114,12 +116,21 @@ There are two ways to drive the Neato around:
 
 Any other key also stops the robot. Additionally there are sliders that control the both the forward and angular speed of the robot.
 
-2. You can set the left and right wheel velocities with a command like the following one:
+- You can set the left and right wheel velocities with a command like the following one:
+
 ```matlab
 >> vels.lrWheelVelocitiesInMetersPerSecond=[.1,-.1];
 ```
 
-They each have to be between -0.3 and 0.3 meters per second.
+Each wheel velocity has to be between -0.3 and 0.3 meters per second.
+
+
+To stop the motion, you can either click on sensor measurement figure and hit "k" or any non-control key, or you can set them back to 0:
+
+```matlab
+>> vels.lrWheelVelocitiesInMetersPerSecond=[.1,-.1];
+```
+
 
 ## Viewing the Neatos' sensor measurements
 
