@@ -136,6 +136,10 @@ To stop the motion, you can either click on sensor measurement figure and hit "k
 
 The main figure that appears when you connect to the Neato shows the LIDAR data. Here is an example:
 
+<p align="center">
+<img src="Pictures/lidar_viz.png" alt="A screenshot of the LIDAR data visualization figure" width="60%" height="60%">
+</p>
+
 The front of the robot (with the flat side opposite the LIDAR) corresponds to 0 degrees.
 
 More generally, all of the sensor from the Neato is stored in a vector that we called "sensors" (the first argument on the left hand side of the call to 'neato' when we connected to the Neato).
