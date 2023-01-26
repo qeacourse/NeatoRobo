@@ -31,7 +31,7 @@ We used Matlab last semester, but just in case...
 
 ### Step 2: Install MATLAB Drive Connector. You can find the download here:
 
-https://www.mathworks.com/products/matlab-drive.html?s_tid=AO_MLConnector#matlab-drive-connector
+[https://www.mathworks.com/products/matlab-drive.html?s_tid=AO_MLConnector#matlab-drive-connector](https://www.mathworks.com/products/matlab-drive.html?s_tid=AO_MLConnector#matlab-drive-connector)
 
 If prompted for a username and password, use your standard Olin credentials. When you install this program, there will be a local folder in your file system called "MATLAB-Drive." All the files in that folder get synced to the cloud on the MATLAB site, similar to how it is done for Dropbox or Google Drive.
 
@@ -39,7 +39,7 @@ If prompted for a username and password, use your standard Olin credentials. Whe
 
 Click on the following link:
 
-https://drive.matlab.com/sharing/97375c34-1e81-461b-854a-28da2c573026/
+[https://drive.matlab.com/sharing/97375c34-1e81-461b-854a-28da2c573026/](https://drive.matlab.com/sharing/97375c34-1e81-461b-854a-28da2c573026/)
 
 Then click "Add to my Files" and then "Add Shortcut." Use your Olin credentials for the requested username and password.
 
@@ -95,9 +95,31 @@ Checklist before performing this step:
 >> [sensors,vels]=neato('192.168.16.68');
 ```
 
-You can verify this worked because the robot will start making a quiet whirring sound and the laser (visible from the side) will start rotating. You should also see a new figure pop up with a set of polar (circular) coordinates and some LIDAR data (e.g., the walls).
+You can verify this worked because the robot will start making a quiet whirring sound and the laser (visible from the side) will start rotating. You should also see a new figure pop up with some LIDAR data (e.g., the walls) on the robot's odemetry coordinates, which are polar (circular) coordinates.
 
 ## Making the Neatos move
+
+There are two ways to drive the Neato around:
+
+1. Use the keyboard shortcuts. ***In order for these shortcuts to work, you have to actively be on the figure with the LIDAR measurements (i.e., click on this figure before trying to drive with the keyboard).*** The key mappings are:
+   - i : forward
+   - k : stop
+   - j : left
+   - l : right
+   - , : backward
+   - u : forward while turning left
+   - o : forward while turning right
+   - m : backward while turning left
+   - . : backward while turning right
+
+Any other key also stops the robot. Additionally there are sliders that control the both the forward and angular speed of the robot.
+
+2. You can set the left and right wheel velocities with a command like the following one:
+```matlab
+>> vels.lrWheelVelocitiesInMetersPerSecond=[.1,-.1];
+```
+
+They each have to be between -0.3 and 0.3 meters per second.
 
 ## Viewing the Neatos' sensor measurements
 
@@ -133,7 +155,7 @@ When you are done working with the robot, it is important to properly shutdown t
 <img src="Pictures/raspberry_pi_b_6_0_0.jpg" width="70%"/>
 </p>
 </li>
-<li>Solution 2: if the card is fully inserted, the SD card may have become corrupted (possibly because some people didn't properly shutdown the Raspberry Pi!).  Please send David (dshuman@olin.edu) an e-mail and tell him which robot is having the problem.  He'll fix it ASAP, but in the meantime just use another robot.</li>
+<li>Solution 2: if the card is fully inserted, the SD card may have become corrupted (possibly because some people didn't properly shutdown the Raspberry Pi!).  Please send David ([dshuman@olin.edu](dshuman@olin.edu)) an e-mail and tell him which robot is having the problem.  He'll fix it ASAP, but in the meantime just use another robot.</li>
 </ul>
 
 *Symptom:* the raspberry Pi display's backlight is flashing on and off.
