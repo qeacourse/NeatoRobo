@@ -21,11 +21,32 @@ The robots have each been outfitted with a Raspberry Pi. The Raspberry Pi is a l
 Since you are not modifying the code running on the Raspberry Pi, each robot will function identically (i.e. there is no software you need to modify on the robot). However, due to variance in manufacturing and handling over the years, each robot may have its own hardware idiosyncrocies.
 
 
-## Connecting to the Physical Neatos
+## One-Time Setup in MATLAB
 
-### Step 0: Make sure you have Matlab installed. 
+### Step 1: Make sure you have Matlab installed. 
 
 We used Matlab last semester, but just in case...
+
+### Step 2: Install MATLAB Drive
+
+ADD DETAILS
+
+### Step 3: Connect to Neato files on MATLAB Drive
+
+ADD DETAILS
+
+### Step 4: Set Path 
+
+ADD DETAILS
+
+### Step 5: Save Path
+
+ADD DETAILS
+
+
+
+## Connecting to the Physical Neatos 
+
 
 ### Step 1: Grab a USB battery pack for the raspberry Pi
 
@@ -43,42 +64,43 @@ Checklist before performing this step:
 
 It should take about 1 minute for the robot to be ready to use (see step 4 for a final checklist).
 
-### Step 4: Connecting to the Neato from Your Laptop
+### Step 4: Connecting to the Neato from your Laptop through MATLAB
 
 Checklist before performing this step:
 
 1. Raspberry pi display backlight is illuminated and not flashing on and off (see troubleshooting section for what to do if this is not the case)
 2. Raspberry pi display shows that the Neato is connected to the OLIN-ROBOTICS network and has an IP address assigned to it.
 3. Raspberry pi display shows that the signal strength of the Neato's connection is at least 70 (the max is 99) for the wifi dongles with antennas, and at least 50 (max is 65) for the dongles without antennas.  Note: If the signal strength is too low, see troubleshooting section for more information.
-4. Your laptop is either connected to the ethernet or the OLIN wifi network (Note: this will not work if you are on OLIN-GUEST).
+4. Your laptop is connected to the OLIN-ROBOTICS network (password given in class).
 
-Start up MATLAB on your computer and run the following command.
+### Step 5: Start up MATLAB on your computer and run the following command:
 
 ***Note: replace the part of the command below that says 192.168.16.68 with the IP address of your robot that is shown on the Raspberry Pi's LCD display.***
 
 ```matlab
->> qeasim start physical 192.168.16.68
+>> [sensors,vels]=neato('192.168.16.68');
 ```
 
-You can verify this worked because the robot will start making a quiet whirring sound and the laser (visible from the side) will start rotating. You should also see in the command window that you are "connected".
+You can verify this worked because the robot will start making a quiet whirring sound and the laser (visible from the side) will start rotating. You should also see a new figure pop up with a set of polar (circular) coordinates and some LIDAR data (e.g., the walls).
 
-When you are ready to disconnect from the robot, run the following command in the MATLAB window you used to connect to your robot.
 
-```matlab
->> qeasim stop
-```
+## Disconnecting from the Neatos
 
-### Step 5: Shutting Down the Raspberry Pi
+### Step 1: Close the figure with the LIDAR data on polar coordinates. This automatically disconnects from your robot. If you accidentally close this window, you'll have to go back to step 5 of connecting above.
 
-When you are done working with the robot it is important to properly shutdown the raspberry pi. DO NOT just unplug the battery. To shutdown the pi, push the "down" button until you see the message "Press select to Shutdown". Press select and wait for the green "ACT" LED on the left side of the Pi to flash steadily ten times then stay off. It is then safe to unplug the battery.
+### Step 2: Shutting Down the Raspberry Pi
+
+When you are done working with the robot, it is important to properly shutdown the raspberry pi. DO NOT just unplug the battery. To shutdown the pi, push the "up" button once (or more) until you see the message "Press select to Shutdown". Press select and wait for the green "ACT" LED on the left side of the Pi to flash steadily ten times then stay off. It is then safe to unplug the battery.
 
 <p style="text-align: center;">
 <img alt="Visual instructions for turning off the Raspberry Pi" src="Pictures/s7vHYkMHZEmtoXhtdLxNdig.png"/>
 </p>
 
-### Step 6: Connect through MATLAB
 
-The instructions for working with the physical Neato should be identical to the simulated Neato.  Please see the sections on [Connecting to the Simulated Robot](#connecting-to-the-simulated-robot) and [Programming Your Robot](#programming-your-robot) for details.
+### Step 3: Unplug the raspberry pi battery and connect it to a charging station.
+
+### Step 4: Return your Neato robot to a charging station. DO NOT try to turn it off through any physical switches on the device. If you do, the battery will not charge for the next group.
+
 
 ## Troubleshooting Your Neato
 
@@ -109,25 +131,3 @@ The instructions for working with the physical Neato should be identical to the 
 *Problem:* The Pi has connected to an access point that is not the closest one (this will sometimes happen).
 
 * Solution: Assuming the Pi display is at the screen showing the IP address, press right to enter the network setup menu.  OLIN-ROBOTICS should be highlighted with an asterisk.  Press right again to reconnect the Pi to the Wifi.  If it doesn't work the first time, try one more time.  If it doesn't work then, switch to a new robot.
-
-
-
-### Activating MATLAB
-
-The first time you run the simulator you will see need to activate MATLAB.  ***This is a one-time step***.
-
-In the MathWorks Software Activation window (if it is not on top, you can bring it to the front using the toolbar at the bottom of the simulator window), perform the following steps.
-
-1.  Make sure to select "Activate automatically using the Internet" and click "next"."
-2.  Select "Login with your MathWorks Account", enter your email address and password, and click "next".
-3.  Select MATLAB (Individual) for license type and click "next".
-4.  Under "Login Name" type "root" and click next (***this is super important!***).
-5.  Click the "Confirm" button.
-6.  Click "Finish"
-
-If all went well, MATLAB should launch in the simulator window and your screen will look like this.
-
-![A visualization of a Neato in the gauntlet world along with MATLAB running.](Pictures/running_matlab.png)
-
-
-The next time you run the simulator, you will not have to go through this process.
