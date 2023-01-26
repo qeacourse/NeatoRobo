@@ -48,7 +48,7 @@ Then click "Add to my Files" and then "Add Shortcut." Use your Olin credentials 
 
 ### Step 4: Set and save path
 
-Alternatively, on the Home tab of MATLAB, to the right of the Layout button, there is a small icon with multiple folders for "Set Path." Click on that. Then click on "Add with subfolders..." and browse to and select the "MATLAB-Drive" from your files. Click on "Save" to make sure the path is saved. 
+On the Home tab of MATLAB, to the right of the Layout button, there is a small icon with multiple folders for "Set Path." Click on that. Then click on "Add with subfolders..." and browse to and select the "MATLAB-Drive" from your files. Click on "Save" to make sure the path is saved. 
 
 ### Step 5: Check that the Neato files are in your path
 
@@ -133,6 +133,8 @@ To stop the motion, you can either click on sensor measurement figure and hit "k
 
 
 ## Viewing the Neatos' sensor measurements
+
+
 
 ## Disconnecting from the Neatos
 
