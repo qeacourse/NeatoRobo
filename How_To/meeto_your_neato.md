@@ -128,7 +128,7 @@ Each wheel velocity has to be between -0.3 and 0.3 meters per second.
 To stop the motion, you can either click on sensor measurement figure and hit "k" or any non-control key, or you can set them back to 0:
 
 ```matlab
->> vels.lrWheelVelocitiesInMetersPerSecond=[.1,-.1];
+>> vels.lrWheelVelocitiesInMetersPerSecond=[0,0];
 ```
 
 
@@ -136,9 +136,11 @@ To stop the motion, you can either click on sensor measurement figure and hit "k
 
 ## Disconnecting from the Neatos
 
-### Step 1: Close the figure with the LIDAR data on polar coordinates. This automatically disconnects from your robot. If you accidentally close this window, you'll have to go back to step 5 of connecting above.
+### Step 1: Close the figure with the LIDAR data on polar coordinates
 
-### Step 2: Shut down the Raspberry Pi.
+This automatically disconnects from your robot. If you accidentally close this window, you'll have to go back to step 5 of connecting above.
+
+### Step 2: Shut down the Raspberry Pi
 
 When you are done working with the robot, it is important to properly shutdown the raspberry pi. DO NOT just unplug the battery. To shutdown the pi, push the "up" button once (or more) until you see the message "Press select to Shutdown". Press select and wait for the green "ACT" LED on the left side of the Pi to flash steadily ten times then stay off. It is then safe to unplug the battery.
 
@@ -147,14 +149,16 @@ When you are done working with the robot, it is important to properly shutdown t
 </p>
 
 
-### Step 3: Unplug the raspberry pi battery and connect it to a charging station.
+### Step 3: Unplug the raspberry pi battery and connect it to a charging station
 
-### Step 4: Return your Neato robot to a charging station. DO NOT try to turn it off through any physical switches on the device. If you do, the battery will not charge for the next group.
+### Step 4: Return your Neato robot to a charging station
+
+DO NOT try to turn it off through any physical switches on the device. If you do, the battery will not charge for the next group.
 
 
 ## Troubleshooting Your Neato
 
-*Symptom:* Both the red and green LEDs on the raspberry pi are illuminated and not flashing.
+### *Symptom:* Both the red and green LEDs on the raspberry pi are illuminated and not flashing.
 
 *Potential Cause:* the Pi was unable to boot from its SD card.
 
@@ -169,7 +173,7 @@ When you are done working with the robot, it is important to properly shutdown t
 <li>Solution 2: if the card is fully inserted, the SD card may have become corrupted (possibly because some people didn't properly shutdown the Raspberry Pi!).  Please send David ([dshuman@olin.edu](dshuman@olin.edu)) an e-mail and tell him which robot is having the problem.  He'll fix it ASAP, but in the meantime just use another robot.</li>
 </ul>
 
-*Symptom:* the raspberry Pi display's backlight is flashing on and off.
+###  *Symptom:* the raspberry Pi display's backlight is flashing on and off.
 
 *Potential Cause:* the Pi cannot connect to the robot via the USB cable.
 
