@@ -55,10 +55,10 @@ On the Home tab of MATLAB, to the right of the Layout button, there is a small i
 In the Command Window, type 
 
 ```matlab
->> which neato
+>> which neatov2
 ```
 
-If you get a location of a file on your laptop, you have set the path correctly. If you get a message saying "'neato' not found," repeat the previous step again. Next, quit MATLAB, reopen it, and then repeat this step to make sure you saved the path correctly.
+If you get a location of a file on your laptop, you have set the path correctly. If you get a message saying "'neatov2' not found," repeat the previous step again. Next, quit MATLAB, reopen it, and then repeat this step to make sure you saved the path correctly.
 
 
 ## Connecting to the Physical Neatos 
@@ -94,47 +94,46 @@ Checklist before performing this step:
 ***Note: replace the part of the command below that says 192.168.16.68 with the IP address of your robot that is shown on the Raspberry Pi's LCD display.***
 
 ```matlab
->> [sensors,vels]=neato('192.168.16.68');
+>> neatov2.connect('192.168.16.68');
 ```
 
-You can verify this worked because the robot will start making a quiet whirring sound and the laser (visible from the side) will start rotating. You should also see a new figure pop up with some LIDAR data (e.g., the walls) on the robot's odemetry coordinates, which are polar (circular) coordinates (see the picture below for an example).
+If all went well you should see output like this.
+```matlab
+Connecting to the Neato.
+Testing connection.
+Connection successful.
+```
 
 ## Making the Neatos move
 
-There are two ways to drive the Neato around:
-
-- Use the keyboard shortcuts. ***In order for these shortcuts to work, you have to actively be on the figure with the LIDAR measurements (i.e., click on this figure before trying to drive with the keyboard).*** The key mappings are:
-   - i : forward
-   - k : stop
-   - j : left
-   - l : right
-   - , : backward
-   - u : forward while turning left
-   - o : forward while turning right
-   - m : backward while turning left
-   - . : backward while turning right
-
-Any other key also stops the robot. Additionally there are sliders that control the both the forward and angular speed of the robot.
-
-- You can set the left and right wheel velocities with a command like the following one:
+- You can set the left and right wheel velocities with a command like the following one (this sets the wheel velociites in meters per second for the left and right wheel respectively):
 
 ```matlab
->> vels.lrWheelVelocitiesInMetersPerSecond=[.1,-.1];
+>> neatov2.setVelocities(.1, -.1);
 ```
 
 Each wheel velocity has to be between -0.3 and 0.3 meters per second.
 
 
-To stop the motion, you can either click on sensor measurement figure and hit "k" or any non-control key, or you can set them back to 0:
+The motion of the robot will stop after about half a second, but you can also stop instantaneously by running the following command.
 
 ```matlab
->> vels.lrWheelVelocitiesInMetersPerSecond=[0,0];
+>> neatov2.setVelocities(0.0, 0.0);
 ```
 
 
 ## Viewing the Neatos' sensor measurements
 
-The main figure that appears when you connect to the Neato shows the LIDAR data. Here is an example:
+You can visualize the Neato's LIDAR data using the following commands (this assumes you haven't connected to the Neato yet. If you have, remove the neato connect step).
+
+```matlab
+>> neatov2.connect('192.168.16.68');
+>> s = neatov2.receive();
+>> figure;
+>> polarplot(s.thetasInRadians, s.ranges, 'b.');
+```
+
+Here is an example of what plot might look like.
 
 <p align="center">
 <img src="Pictures/lidar_viz.png" alt="A screenshot of the LIDAR data visualization figure" width="60%" height="60%">
@@ -142,9 +141,9 @@ The main figure that appears when you connect to the Neato shows the LIDAR data.
 
 The front of the robot (with the flat side opposite the LIDAR) corresponds to 0 degrees.
 
-More generally, all of the sensor from the Neato is stored in a vector that we called "sensors" (the first argument on the left hand side of the call to 'neato' when we connected to the Neato).
+More generally, we can fetch the latest sensor data from the Neato using the receive (e.g., ``>> s = neatov2.receive()``).
 
-The data structure includes:   
+The data structure ``s`` representing the sensor data will include:   
 
 - bumpers: 0/1 booleans about whether any of the four bumbers are engaged
 - thetasInRadians: the LIDAR takes measurements every 1 degree, or 2pi/360 radians, starting at 0. These angles are given in this vector
@@ -155,9 +154,11 @@ We'll explore the other components soon.
  
 ## Disconnecting from the Neatos
 
-### Step 1: Close the figure with the LIDAR data on polar coordinates
+### Step 1: Run the disconnect command in MATLAB
 
-This automatically disconnects from your robot. If you accidentally close this window, you'll have to go back to step 5 of connecting above.
+```matlab
+>>> neatov2.disconnect();
+```
 
 ### Step 2: Shut down the Raspberry Pi
 
