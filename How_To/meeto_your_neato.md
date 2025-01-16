@@ -67,13 +67,17 @@ In the Command Window, type
 If you get a location of a file on your laptop, you have set the path correctly. If you get a message saying "'neatov2' not found," repeat the previous step again. Next, quit MATLAB, reopen it, and then repeat this step to make sure you saved the path correctly.
 
 ## The Neato Fleet and "Pit Cart"
-In your studio there will be a Neato cart where fresh Neatos and battery packs will be stored for your use. Please take note of the following elements of the cart:
+In your studio there will be a Neato cart where fresh Neatos and battery packs will be stored for your use. There are also battery pack charging stations on both carts, under the "NeatoKart" signage.
 
-> TODO Add labelled cart picture (chargers, battery packs, Neatos, shelves)
+<p align="center">
+<img src="Pictures/neato_carts.png" alt="A picture of two wire rack carts with Neato charging stations and battery pack charging areas." width="60%" height="60%">
+</p>
 
-In addition to your Neato cart, there is a shared "Pit Cart" in studio MACXXX which is where Neatos or batteries that need attention by our "Pit Crew" (AKA teaching team) should be placed. The intent of the Pit Cart is to make sure your Neatos are always working up-to-snuff. If we don't know there is a problem, we can't fix it. And we also don't want you to spend time debugging the physical hardware. When putting something on the Pit Cart, please leave a note explaining the issue that you saw with the Neato or battery pack, so we can have a look.
+In addition to your Neato cart, there is a shared "Pit Cart" which is where Neatos or batteries that need attention by our "Pit Crew" (AKA teaching team) should be placed. The intent of the Pit Cart is to make sure your Neatos are always working up-to-snuff. If we don't know there is a problem, we can't fix it. And we also don't want you to spend time debugging the physical hardware. When putting something on the Pit Cart, please leave a note explaining the issue that you saw with the Neato or battery pack, so we can have a look.
 
-> TODO Add labelled Pit Cart picture
+<p align="center">
+<img src="Pictures/pit_cart.png" alt="A picture of a wire rack labelled The Pit with shelves labelled to indicate supplies and Neato drop-off areas." width="30%" height="30%">
+</p>
 
 
 ## Connecting to the Physical Neatos 
@@ -98,6 +102,16 @@ Checklist before performing this step:
 2. Make sure the Neato has the capabilities you need (some Neatos may have LIDAR or other sensor issues; these will be written somewhere on the Neato if present). 
     1. If you use a Neato and its sensor capabilities or behaviors are different than what is indicated on the Neato, please place it on the "Pit Cart" with a note about the issue once you are done using the robot.
 
+
+<p align="center">
+<img src="Pictures/charged_battery_screen.gif" alt="A gif showing a working Neato home screen at full charge." width="30%" height="30%">
+<img src="Pictures/charging_battery_screen.gif" alt="A gif showing a working Neato home screen at partial charge." width="30%" height="30%">
+</p>
+<p align="center">
+Examples of working Neato home screens when fully charged (left) and while charging (right). The alternately flashing "Thank you" message is actually a good thing! 
+</p>
+
+
 ### Step 3: Connect the USB battery pack to the Raspberry Pi's USB cable.
 
 It should take about 1 minute for the robot to be ready to use -- be patient!
@@ -106,6 +120,11 @@ It should take about 1 minute for the robot to be ready to use -- be patient!
 2. After a minute, the Raspberry Pi display backlight should be illuminated and not flashing on and off (see Troubleshooting if you see this)
 3. The display should then read that the Neato is connected to the OLIN-ROBOTICS network and has an IP address assigned to it. 
 4. The display will also show a number which indicates the signal strength of the Neato's connection to the Wifi network. The connection should be at least 70 for Wifi adaptors with antennas, and at least 50 for Wifi adapters without antennas. If the signal strength is lower than these suggested values, have a look at the Troubleshooting section.
+
+<p align="center">
+<img src="Pictures/raspberry_pi_screen.jpg" alt="A picture of a raspberry pi and shield with the network information displayed." width="30%" height="30%">
+</p>
+
 
 ### Step 4: Connecting to the Neato from your Laptop through MATLAB
 
@@ -164,7 +183,7 @@ Have a look at `s` in your MATLAB workspace. This data structure should contain 
 - **bumpers**: a 0 or 1 boolean about whether any of the four bumpers are engaged (left, front left, front right, right)
 - **thetasInRadians**: the LIDAR takes laser-range measurements every 1 degree in a circle (or, 2pi/360 radians), starting at 0. This variable contains the angle which corresponds to the ranges in the next variable.
 - **ranges**: the distance of the first "thing" (e.g., wall, object) sensed by the LIDAR in the direction of the corresponding angle. For example, the first element of this vector tells the distance to an object directly ahead.
-- **encoders**: encoders are sensors on motors which provide an indication of the revolutions of a wheel or its net distance travelled. The encoders variable tells us the time at which some data was collected (seconds), the linear travel of the left wheel (in meters) and the linear travel of the right wheel (in meters).
+- **encoders**: encoders are sensors on motors which provide an indication of the revolutions of a wheel or its net distance travelled. The encoders variable tells us the linear travel of the left wheel (in meters) and the linear travel of the right wheel (in meters).
 
 To plot your LIDAR data, you can run the following command:
 
@@ -213,6 +232,30 @@ Actually getting the Neato to dock properly is actually tricky. Please ensure th
     1. If you see that the battery indicator is showing a charging battery and no persistent messages show up, you're good to go.
     2. If you see that the battery indicator is showing a charging battery and flashes the message "Thank you for cleaning my dirtbin and filter" you are good to go.
     3. If you see any other messages, or the battery indicator never shows that it is charging, you are not good to go -- grab a teaching team member if you're unsure what's up, or place the robot on the "Pit Cart" if there seems to be an issue.
+
+<!-- <p align="center">
+<video src="Pictures/neato_charging_part1.mp4" alt="Video walk-through of the Neato charging station." width="60%" height="60%" controls>
+</p>
+
+<p align="center">
+<a href="https://youtu.be/C-Fp7QMhqcc">Youtube Link for Transcript / Closed Captioning</a>
+</p> -->
+
+
+<p align="center">
+<iframe width="602" height="339" src="https://www.youtube.com/embed/C-Fp7QMhqcc" title="Neato Charging Part 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</p>
+
+<!-- <p align="center">
+<video src="Pictures/neato_charging_part2.mp4" alt="Video walk-through of the Neato charging station, part 2." width="60%" height="60%" controls>
+</p>
+
+<p align="center">
+<a href="https://youtu.be/lglmST9uP4M">Youtube Link for Transcript / Closed Captioning</a>
+</p> -->
+<p align="center">
+<iframe width="602" height="339" src="https://www.youtube.com/embed/lglmST9uP4M" title="Neato Charging Part 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</p>
 
 
 ## Troubleshooting Your Neato
