@@ -66,17 +66,27 @@ In the Command Window, type
 
 If you get a location of a file on your laptop, you have set the path correctly. If you get a message saying "'neatov2' not found," repeat the previous step again. Next, quit MATLAB, reopen it, and then repeat this step to make sure you saved the path correctly.
 
+### Step 6: Install Simulink and Simulink 3D Animation
+We'll need some special MATLAB apps to order to interface with the joystick hardware we'll be using to tele-op our Neatos. Apps can be installed several ways, but we recommend doing this directly from MATLAB.
+
+With MATLAB open, navigate to the "Apps" tab at the top, then select "Get More Apps." The "Add-On Explorer" window will pop-up, and using the search bar on the top right, look up "Simulink." Select the correct app and follow the install instructions (if asked for credentials, the Olin standard ones will do). The install can take some time, so be patient! 
+
+Once this is installed, repeat the same process for "Simulink 3D Animation."
+
+> Note: If you are installing on an Ubunutu or Linux machine, you will need to run MATLAB as a root user (e.g., using sudo) in order to install apps successfully.
+
+
 ## The Neato Fleet and "Pit Cart"
 In your studio there will be a Neato cart where fresh Neatos and battery packs will be stored for your use. There are also battery pack charging stations on both carts, under the "NeatoKart" signage.
 
 <p align="center">
-<img src="Pictures/neato_carts.png" alt="A picture of two wire rack carts with Neato charging stations and battery pack charging areas." width="60%" height="60%">
+<img src="Pictures/neato_carts.png" alt="A picture of two wire rack carts with Neato charging stations and battery pack charging areas." width="80%" height="80%">
 </p>
 
-In addition to your Neato cart, there is a shared "Pit Cart" which is where Neatos or batteries that need attention by our "Pit Crew" (AKA teaching team) should be placed. The intent of the Pit Cart is to make sure your Neatos are always working up-to-snuff. If we don't know there is a problem, we can't fix it. And we also don't want you to spend time debugging the physical hardware. When putting something on the Pit Cart, please leave a note explaining the issue that you saw with the Neato or battery pack, so we can have a look.
+In addition to your Neato cart, there is a shared "Pit Cart", located in one of the studios, which is where Neatos or batteries that need attention by our "Pit Crew" (AKA teaching team) should be placed. The intent of the Pit Cart is to make sure your Neatos are always working up-to-snuff. If we don't know there is a problem, we can't fix it. And we also don't want you to spend time debugging the physical hardware. When putting something on the Pit Cart, please leave a note explaining the issue that you saw with the Neato or battery pack, so we can have a look.
 
 <p align="center">
-<img src="Pictures/pit_cart.png" alt="A picture of a wire rack labelled The Pit with shelves labelled to indicate supplies and Neato drop-off areas." width="30%" height="30%">
+<img src="Pictures/pit_cart.png" alt="A picture of a wire rack labelled The Pit with shelves labelled to indicate supplies and Neato drop-off areas." width="60%" height="60%">
 </p>
 
 
@@ -104,11 +114,11 @@ Checklist before performing this step:
 
 
 <p align="center">
-<img src="Pictures/charged_battery_screen.gif" alt="A gif showing a working Neato home screen at full charge." width="30%" height="30%">
-<img src="Pictures/charging_battery_screen.gif" alt="A gif showing a working Neato home screen at partial charge." width="30%" height="30%">
+<img src="Pictures/small_charged_battery_screen.gif" alt="A gif showing a working Neato home screen at full charge." width="60%" height="60%">
+<img src="Pictures/small_charging_battery_screen.gif" alt="A gif showing a working Neato home screen at partial charge." width="60%" height="60%">
 </p>
 <p align="center">
-Examples of working Neato home screens when fully charged (left) and while charging (right). The alternately flashing "Thank you" message is actually a good thing! 
+Examples of working Neato home screens when fully charged (top) and while charging (bottom). The alternately flashing "Thank you" message is actually a good thing! 
 </p>
 
 
@@ -122,7 +132,7 @@ It should take about 1 minute for the robot to be ready to use -- be patient!
 4. The display will also show a number which indicates the signal strength of the Neato's connection to the Wifi network. The connection should be at least 70 for Wifi adaptors with antennas, and at least 50 for Wifi adapters without antennas. If the signal strength is lower than these suggested values, have a look at the Troubleshooting section.
 
 <p align="center">
-<img src="Pictures/raspberry_pi_screen.jpg" alt="A picture of a raspberry pi and shield with the network information displayed." width="30%" height="30%">
+<img src="Pictures/raspberry_pi_screen.jpg" alt="A picture of a raspberry pi and shield with the network information displayed." width="60%" height="60%">
 </p>
 
 
@@ -136,7 +146,7 @@ Checklist before performing this step:
 Once you're confirmed the above, run the following command in your Command Terminal:
 
 ```matlab
->> neatov2.connect('192.168.16.68');
+>> neatov3.connect('192.168.16.68');
 ```
 
 > ***Note: replace the part of the command below that says 192.168.16.68 with the IP address of your robot that is shown on the Raspberry Pi's LCD display.***
@@ -148,17 +158,13 @@ Testing connection.
 Connection successful.
 ```
 
-## Making the Neatos move
-
-### Driving in "Teleop" Mode
-> TODO
-
+## The Neato Software Interface
 
 ### Manually Setting Wheel Velocities
-When using the Neatos in this module, you will want to precisely command the velocities of each wheel with your code. You can set the left and right wheel velocities with a command like the following one (this sets the wheel velocities in meters per second for the left and right wheel respectively):
+When using the Neatos in class, you will often want to precisely command the velocities of each wheel with your code. You can set the left and right wheel velocities with a command like the following one (this sets the wheel velocities in meters per second for the left and right wheel respectively):
 
 ```matlab
->> neatov2.setVelocities(.1, -.1);
+>> neatov3.setVelocities(.1, -.1);
 ```
 
 This command sets the left wheel velocity to 0.1 m/s forward, and the right wheel velocity to 0.1 m/s backward.
@@ -168,14 +174,14 @@ This command sets the left wheel velocity to 0.1 m/s forward, and the right whee
 When you use this command, the motion of the robot will stop after about half a second, but you can also stop instantaneously by providing 0.0 m/s velocity commands to each wheel:
 
 ```matlab
->> neatov2.setVelocities(0.0, 0.0);
+>> neatov3.setVelocities(0.0, 0.0);
 ```
 
 ### Viewing Sensor Measurements
 When connected to the Neato, you can query its sensors using the "receive" command:
 
 ```matlab
->> s = neatov2.receive();
+>> s = neatov3.receive();
 ```
 
 Have a look at `s` in your MATLAB workspace. This data structure should contain the following:
@@ -200,13 +206,38 @@ Here is an example of what plot might look like:
 
 The front of the robot (the flat side of the robot, with the bumper) corresponds to 0 degrees (the right of the plot).
 
+
+## Driving the Neatos With a Joystick
+Sometimes, it is convenient to directly drive our Neatos -- perhaps to gather some specific data or experiment with different trajectory approaches and get intuition for the way the robot moves. For this, we've created a software interface that allows you to directly control the Neato with a gamepad joystick called `neato_joy_tele_op`.
+
+Before starting, make sure you are not currently connected to a Neato:
+
+```matlab
+>> neatov3.disconnect()
+```
+
+The provided tele-op code connects to your Neato for you, and converts joystick commands to wheel velocities. You will be able to drive your Neato for the number of seconds you will specify, and then the code will stop your Neato and disconnect. The command is as follows:
+
+```matlab
+>> recorded_data = neato_joy_tele_op('192.168.16.60', 30);
+```
+
+where the first argument is the IP address of your Neato, and the second is the number of seconds you will be able to drive your Neato around. 
+
+If all goes well, you should see a message `you may use the controller now` appear in the terminal, at which point you can start driving your Neato. Use the left joystick on the controller pad for driving. After the end of 30 seconds, the Neato will automatically stop and you will be disconnected from the Neato.
+
+
+### Viewing Recorded Driving Data
+During your drive, you will have recorded data to an object `recorded_data`. Have a look at what's provided in this data structure automatically. You may find later on in the class that you may want to modify what is logged, so this is a great script to consider using as a template for your own modifications in the future.
+
  
 ## Disconnecting from the Neatos
+When you're finished working with the Neato, please follow these shutdown procedures -- it is **critical** to be mindful during this step so that we continue to have a strong fleet available for you all to use.
 
 ### Step 1: Run the disconnect command in MATLAB
 
 ```matlab
->>> neatov2.disconnect();
+>>> neatov3.disconnect();
 ```
 
 ### Step 2: Shut down the Raspberry Pi
