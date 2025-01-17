@@ -41,7 +41,7 @@ If prompted for a username and password, use your standard Olin credentials. Whe
 
 Let's go ahead and get the first release of Neato code you'll be using in the class set up. Click on the following link:
 
-[https://drive.mathworks.com/sharing/d43f55d4-77af-4fa8-aa7c-6abb36ad34e6](https://drive.mathworks.com/sharing/d43f55d4-77af-4fa8-aa7c-6abb36ad34e6)
+[https://drive.mathworks.com/sharing/45b094a7-044a-48d1-88bd-55e251aeb23c](https://drive.mathworks.com/sharing/45b094a7-044a-48d1-88bd-55e251aeb23c)
 
 Then click "Add to my Files" and then "Add Shortcut." Use your Olin credentials for the requested username and password.
 
@@ -61,7 +61,7 @@ To execute code in MATLAB, it needs to be on your "Path" when interacting with t
 In the Command Window, type 
 
 ```matlab
->> which neatov2
+>> which neatov3
 ```
 
 If you get a location of a file on your laptop, you have set the path correctly. If you get a message saying "'neatov2' not found," repeat the previous step again. Next, quit MATLAB, reopen it, and then repeat this step to make sure you saved the path correctly.
@@ -207,8 +207,14 @@ Here is an example of what plot might look like:
 The front of the robot (the flat side of the robot, with the bumper) corresponds to 0 degrees (the right of the plot).
 
 
-## Driving the Neatos With a Joystick
-Sometimes, it is convenient to directly drive our Neatos -- perhaps to gather some specific data or experiment with different trajectory approaches and get intuition for the way the robot moves. For this, we've created a software interface that allows you to directly control the Neato with a gamepad joystick called `neato_joy_tele_op`.
+### Running Your Neato from a Script + Simulation!
+You have been provided an example file called `SampleCode_SimToReal_WheelEncoders`. Open this up and have a look. You'll notice that the neatov3 interface comes with some simple simulation capabilities, which you might find useful when you want to work on your projects from the comfort of a West Hall lounge. Run the example script with the `useSim = true` flag. 
+
+Once you're confident you understand what the robot will do, run this same code after setting `useSim = false` and providing your robot's IP address. How does it look?
+
+
+## Driving a Neato With a Joystick
+Sometimes it is convenient to directly drive our Neatos -- perhaps to gather some specific data or experiment with different trajectory approaches and get intuition for the way the robot moves. For this, we've created a software interface that allows you to directly control the Neato with a gamepad joystick called `neato_joy_tele_op`.
 
 Before starting, make sure you are not currently connected to a Neato:
 
@@ -222,13 +228,13 @@ The provided tele-op code connects to your Neato for you, and converts joystick 
 >> recorded_data = neato_joy_tele_op('192.168.16.60', 30);
 ```
 
-where the first argument is the IP address of your Neato, and the second is the number of seconds you will be able to drive your Neato around. 
+where the first argument is the IP address of your Neato, and the second is the number of seconds you will be able to drive your Neato around (you can set this number to whatever you like). 
 
-If all goes well, you should see a message `you may use the controller now` appear in the terminal, at which point you can start driving your Neato. Use the left joystick on the controller pad for driving. After the end of 30 seconds, the Neato will automatically stop and you will be disconnected from the Neato.
+If all goes well, you should see a message `you may use the controller now` appear in the terminal, at which point you can start driving your Neato. Use the left joystick on the controller pad for driving. After the end of 30 seconds (or however long you specified), the Neato will automatically stop and you will be disconnected from the Neato.
 
 
 ### Viewing Recorded Driving Data
-During your drive, you will have recorded data to an object `recorded_data`. Have a look at what's provided in this data structure automatically. You may find later on in the class that you may want to modify what is logged, so this is a great script to consider using as a template for your own modifications in the future.
+During your drive, you will have recorded data to an object `recorded_data`. Have a look at what's provided in this data structure by default (hint: this should look familiar!). You may find later on in the class that you want to modify what is logged, so this is a great script to consider using as a template for your own modifications in the future.
 
  
 ## Disconnecting from the Neatos
